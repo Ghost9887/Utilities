@@ -1,5 +1,10 @@
 use std::{env, fs, process};
-use utilities::{get_command, Commands};
+use utilities::{
+    get_command, 
+    check_cat_conditions, 
+    run_cat, 
+    Commands,
+};
 
 fn main() {
     
@@ -25,5 +30,19 @@ fn main() {
 }
 
 fn process_command(command: Commands, args: Vec<String>) {
-    println!("processing the command");
+    match command {
+        Commands::Cat => {
+            match check_cat_conditions(&args) {
+                Ok(()) => run_cat(&args),
+                Err(error) => {
+                    eprintln!("{error}");
+                    process::exit(1);
+                }
+            } 
+        },
+        _ => {
+            eprintln!("Fatal Error");
+            process::exit(1);
+        }
+    }
 }
