@@ -33,7 +33,12 @@ fn process_command(command: Commands, args: Vec<String>) {
     match command {
         Commands::Cat => {
             match check_cat_conditions(&args) {
-                Ok(()) => run_cat(&args),
+                Ok(()) => {
+                    if let Err(e) = run_cat(args) {
+                        eprintln!("{e}");
+                        process::exit(1);
+                    }
+                },
                 Err(error) => {
                     eprintln!("{error}");
                     process::exit(1);
