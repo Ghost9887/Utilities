@@ -3,6 +3,12 @@
 version = 4
 
 [[package]]
+name = "glob"
+version = "0.3.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0cc23270f6e1808e30a928bdc84dea0b9b4136a8bc82338574f23baf47bbd280"
+
+[[package]]
 name = "simply_colored"
 version = "0.1.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -12,5 +18,6 @@ checksum = "8b9a4cd76dce3448e21b46120655c4567c0ae8d51156cd764f7fa7048fb79ac1"
 name = "utilities"
 version = "0.1.0"
 dependencies = [
+ "glob",
  "simply_colored",
 ]

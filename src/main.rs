@@ -1,8 +1,10 @@
-use std::{env, fs, process};
+use std::{env, process};
 use utilities::{
     get_command, 
     check_cat_conditions, 
     run_cat, 
+    check_ls_conditions,
+    run_ls,
     Commands,
 };
 
@@ -45,9 +47,19 @@ fn process_command(command: Commands, args: Vec<String>) {
                 }
             } 
         },
-        _ => {
-            eprintln!("Fatal Error");
-            process::exit(1);
-        }
+        Commands::LS => {
+            match check_ls_conditions(&args){
+                Ok(()) => {
+                    if let Err(e) = run_ls(args){
+                        eprintln!("{e}");
+                        process::exit(1);
+                    }
+                },
+                Err(error) => {
+                    eprintln!("{error}");
+                    process::exit(1);
+                }
+            }
+        },
     }
 }

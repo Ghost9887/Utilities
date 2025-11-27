@@ -5,3 +5,4 @@ edition = "2024"
 
 [dependencies]
 simply_colored = "0.1.4"
+glob = "0.3.3"
